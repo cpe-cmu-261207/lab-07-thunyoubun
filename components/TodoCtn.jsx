@@ -5,6 +5,17 @@ export default function TodoCtn() {
   const [todoInput, setTodoInput] = useState("");
   const [todos, setTodos] = useState([]);
 
+  //load
+  useEffect(() => {
+    const todoStr = localStorage.getItem("todo-react");
+    if (todoStr === null) {
+      setTodos([]);
+      return;
+    }
+    setTodos(JSON.parse(todoStr));
+  }, []);
+
+  //save
   const [isFirstRender, setIsFirstRender] = useState(true);
   useEffect(() => {
     if (isFirstRender) {
@@ -15,21 +26,10 @@ export default function TodoCtn() {
     localStorage.setItem("todo-react", todosStr);
   }, [todos]);
 
-  useEffect(() => {
-    const todoStr = localStorage.getItem("todo-react");
-    setTodos(JSON.parse(todoStr));
-  }, []);
-
-  const saveTodos = () => {
-    const todoStr = JSON.stringify(todos);
-    localStorage.setItem("react-todos", todoStr);
-  };
-
   const onKeyDownHaddler = (event) => {
     if (event.key == "Enter") {
       const newTodos = [...todos, { title: todoInput, Completed: false }];
       setTodos(newTodos);
-
       setTodoInput("");
     }
   };
@@ -37,7 +37,6 @@ export default function TodoCtn() {
   const deleteTodo = (idx) => {
     todos.splice(idx, 1);
     const newTodos = [...todos];
-
     setTodos(newTodos);
   };
 
