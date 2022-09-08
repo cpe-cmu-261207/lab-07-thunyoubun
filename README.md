@@ -15,4 +15,4 @@ npm run dev
 
 ให้นศ.ศึกษาวิธีการ build ใน **codesandbox.io** ได้จาก slide **Slide 10 - React Part One (extras)**
 
-(https://codesandbox.io/s/nifty-borg-vpnlto)
+(https://codesandbox.io/p/github/cpe-cmu-261207/lab-07-thunyoubun)
